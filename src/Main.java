@@ -1,6 +1,9 @@
 import gestionMagasin.Store;
 import product.FoodProduct;
 
+
+import employees.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +28,24 @@ public class Main {
     public  static void labFour() {
 
 
-             Store st1=new Store(1,"Carefour","City Center");
-             Store st2=new Store(2,"Monoprix","Manzeh 6" );
+        Store carrefour = new Store(1, "Carrefour", "City Center", 100);
+        Store monoprix = new Store(2, "Monoprix", "Menzah 6", 100);
+
+        carrefour.addEmployee(new Cashier(1, "Salma", "Tunis", 190, 5));
+        carrefour.addEmployee(new Cashier(2, "Sara", "Ariana", 175, 6));
+        carrefour.addEmployee(new SalesPerson(3, "Amal", "Marsa", 160, 1.2));
+        carrefour.addEmployee(new Manager(4, "Wiem", "Lac2", 170, 500));
+
+        monoprix.addEmployee(new Cashier(5, "Salwa", "Sousse", 185, 3));
+        monoprix.addEmployee(new SalesPerson(6, "Lina", "Mahdia", 150, 1.1));
+        monoprix.addEmployee(new SalesPerson(7, "Rania", "Bizerte", 180, 1.3));
+        monoprix.addEmployee(new SalesPerson(8, "Imen", "Gabes", 140, 1.05));
+        monoprix.addEmployee(new Manager(9, "Ameni", "Sfax", 160, 700));
+
+        System.out.println("Carrefour Employees:");
+        carrefour.displayEmployeesDetails();
+        System.out.println("\nMonoprix Employees:");
+        monoprix.displayEmployeesDetails();
 
 
 

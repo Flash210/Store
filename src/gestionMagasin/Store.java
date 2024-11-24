@@ -3,6 +3,8 @@ package gestionMagasin;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import employees.Employe;
 import product.FoodProduct;
 
 
@@ -12,16 +14,46 @@ public class Store {
     private String address;
     private int capacity;
     private List<FoodProduct> products;
+    private List<Employe> listOfEmployees;
 
 
-    public Store(int id,String name, String address, int capacity) {
+
+
+
+
+
+
+
+
+
+
+    public Store(int id, String name, String address, int capacity) {
         this.id = id;
         this.name = name;
 
         this.address = address;
         this.capacity = capacity;
         this.products = new ArrayList<>();
+        this.listOfEmployees = new ArrayList<>();
+
     }
+
+
+    public void addEmployee(Employe employee) {
+        if (listOfEmployees.size() >= 20) {
+            System.out.println("Employee limit reached.");
+            return;
+        }
+        listOfEmployees.add(employee);
+    }
+    public void displayEmployeesDetails() {
+        for (Employe i : listOfEmployees) {
+            System.out.println(i + ", Salary: " + i.calculateSalary() + " DN :)");
+        }
+    }
+
+
+
     public Store(int id,String name, String address) {
         this.id = id;
         this.name = name;
@@ -143,11 +175,13 @@ public class Store {
 
     @Override
     public String toString() {
-        return "gestionMagasin.Store{" +
+        return "Store{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", capacity=" + capacity +
                 ", products=" + products +
+                ", employees=" + listOfEmployees +
                 '}';
     }
 }
