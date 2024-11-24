@@ -1,5 +1,7 @@
 package product;
 
+import java.util.Objects;
+
 public class FoodProduct {
 
     private int id;
@@ -54,6 +56,34 @@ private  String      expireDate;
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+
+//    @Override
+//    public boolean equals(Object obj) {
+//
+//        if (this ==obj) return true;
+//        if (obj ==null || obj.getClass() !=this.getClass()) return false;
+//        FoodProduct other = (FoodProduct) obj;
+//        return id==other.id && label.equals(other.label) && brand.equals(other.brand) && price == other.price;
+//    }
+@Override
+public boolean equals(Object obj) {
+    if (this == obj) return true;  // Same memory reference
+    if (obj == null || getClass() != obj.getClass()) return false;  // Check null and class type
+
+    FoodProduct other = (FoodProduct) obj;
+
+    // Null-safe comparison of strings
+    return id == other.id &&
+            Objects.equals(label, other.label) &&
+            Objects.equals(brand, other.brand) &&
+            Double.compare(price, other.price) == 0;
+}
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, label, brand, price);
     }
 
     @Override

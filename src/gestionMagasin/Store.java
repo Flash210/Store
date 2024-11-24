@@ -51,13 +51,18 @@ public class Store {
 
 
     public boolean addProduct(FoodProduct product) {
-        if (products.size() < capacity) {
-            products.add(product);
-            return true;
-        } else {
-            System.out.println("full capacity!");
+
+        if ( products.size() > capacity){
+            System.out.println("Full Capacity");
             return false;
         }
+
+        if ( products.contains(product)){
+            System.out.println("Product already exists");
+            return false;
+        }
+        products.add(product);
+        return true;
     }
 
     public boolean removeProduct(int productId) {
@@ -74,15 +79,49 @@ public class Store {
         return  products.size();
     }
 
-    public boolean isProductInStore(FoodProduct product1, FoodProduct product2) {
-        return product1.equals(product2);
+    public String isProductInStore(FoodProduct product) {
+        for (FoodProduct p : products) {
+            if (p != product && p.equals(product)) {  // Skip the same object but check equality
+                return "Product exists in Store!";
+            }
+        }
+        return "New Product!";
     }
 
-    public boolean isProductInStore2(FoodProduct product1, FoodProduct product2) {
-        return product1.equals(product2);
+
+    public String  isProductInStore2(FoodProduct product1, FoodProduct product2) {
+        return product1.equals(product2) ? "Product exists in Store!" : "New Product!";
     }
 
 
+    public  String searchForAproduct(FoodProduct product) {
+        // there is a little questions here whitch is when i create a new product and set it same values as the previous products in teh list teh
+        //methdo will display yes while i dont yet add it ot teh store so i think that i must test first if oroduct exist in store or not
+        // and if  will do it i will direclty use teh isProductInStore2 for both  existing products and search
+        return  products.contains(product) ? "Yes" : " Product Not FOund !";
+    }
+
+    public  String removeProductFromStore(FoodProduct product) {
+        return  products.remove(product) ? "Product Removed Succesfully" : " Product Not Removed  !";
+    }
+
+
+
+    public static Store findStoreWithMostProducts(List<Store> stores) {
+        if (stores == null || stores.isEmpty()) {
+            System.out.println("No stores to compare.");
+            return null;  // Handle empty list case
+        }
+
+        Store storeWithMostProducts = stores.get(0);
+        for (Store store : stores) {
+            if (store.products.size() > storeWithMostProducts.products.size()) {
+                storeWithMostProducts = store;
+            }
+        }
+
+        return storeWithMostProducts;
+    }
 
 
 
