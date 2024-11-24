@@ -7,8 +7,35 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
+
+       //  labThree();
+
+        labFour();
+
+
+
+
+
+
+
+
+
+    }
+
+    public  static void labFour() {
+
+
+             Store st1=new Store(1,"Carefour","City Center");
+             Store st2=new Store(2,"Monoprix","Manzeh 6" );
+
+
+
+
+    }
+
+
+   public static  void labThree(){
+
 
 
         FoodProduct p1 = new FoodProduct(1021, "Milk and Delight ", "", 0, "");
@@ -16,7 +43,7 @@ public class Main {
         FoodProduct p3 = new FoodProduct(1023, "Milk and Delight ", "", 0, "");
 
 
-        Store store1 = new Store(1, "01", 30);
+        Store store1 = new Store(1, "01", "SOusse",30);
 
         store1.addProduct(p1);
         store1.addProduct(p2);
@@ -27,7 +54,7 @@ public class Main {
         System.out.println(store1.searchForAproduct(p3));
 
 
-        Store store2 = new Store(2, "011", 30);
+        Store store2 = new Store(2, "011", "Tunis",30);
         FoodProduct pp1 = new FoodProduct(1021, "Milk and Delight ", "", 0, "");
         FoodProduct pp2 = new FoodProduct(1021, "Milk and Delight ", "", 0, "");
         FoodProduct pp3 = new FoodProduct(1021, "Milk and Delight ", "", 0, "");
@@ -40,18 +67,14 @@ public class Main {
 
         List<Store> storesList = new ArrayList<>();
 
-storesList.add(store2);
-storesList.add(store1);
+        storesList.add(store2);
+        storesList.add(store1);
 
 //System.out.println(store1.removeProductFromStore(p1));
 
-Store storeWithMostProducts= Store.findStoreWithMostProducts(storesList);
-System.out.println("The store with most product is : ID= "+storeWithMostProducts.getId());
-
-
-
+        Store storeWithMostProducts= Store.findStoreWithMostProducts(storesList);
+        System.out.println("The store with most product is : ID= "+storeWithMostProducts.getId());
 
     }
-
 
 }

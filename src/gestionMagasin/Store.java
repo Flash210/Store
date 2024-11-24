@@ -8,18 +8,34 @@ import product.FoodProduct;
 
 public class Store {
     private int id;
+    private  String name;
     private String address;
     private int capacity;
     private List<FoodProduct> products;
 
 
-    public Store(int id, String address, int capacity) {
+    public Store(int id,String name, String address, int capacity) {
         this.id = id;
+        this.name = name;
+
         this.address = address;
         this.capacity = capacity;
         this.products = new ArrayList<>();
     }
+    public Store(int id,String name, String address) {
+        this.id = id;
+        this.name = name;
 
+        this.address = address;
+        this.products = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;
