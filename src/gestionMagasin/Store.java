@@ -1,6 +1,7 @@
 package gestionMagasin;
 
-
+import exceptions.FullStoreException;
+import exceptions.NegativePriceException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,20 +99,38 @@ public class Store {
     }
 
 
-    public boolean addProduct(FoodProduct product) {
-
-        if ( products.size() > capacity){
-            System.out.println("Full Capacity");
-            return false;
-        }
-
-        if ( products.contains(product)){
-            System.out.println("Product already exists");
-            return false;
-        }
-        products.add(product);
-        return true;
+//    public boolean addProduct(FoodProduct product) {
+//
+//        if ( products.size() > capacity){
+//            System.out.println("Full Capacity");
+//            return false;
+//        }
+//
+//        if ( products.contains(product)){
+//            System.out.println("Product already exists");
+//            return false;
+//        }
+//        products.add(product);
+//        return true;
+//    }
+public boolean addProduct(FoodProduct product) throws FullStoreException, NegativePriceException {
+    if (products.size() >= capacity) {
+        throw new FullStoreException("Store is at full capacity!");
     }
+
+    if (product.getPrice() < 0) {
+        throw new NegativePriceException("Product price cannot be negative!");
+    }
+
+    if (products.contains(product)) {
+        System.out.println("Product already exists");
+        return false;
+    }
+
+    products.add(product);
+    return true;
+}
+
 
     public boolean removeProduct(int productId) {
         for (FoodProduct product : products) {
